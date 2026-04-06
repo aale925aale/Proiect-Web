@@ -1,0 +1,169 @@
+.account-page {
+  min-height: 100vh;
+  background: #FEFAE0;
+  padding: 40px 16px;
+}
+.account-page.dark { background: #121212; color: #f5f5f5; }
+
+.account-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.account-hero {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+.account-page.dark .account-hero { background: #1e1e1e; }
+
+.account-avatar-big {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #28a745;
+}
+
+.account-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #28a745;
+  margin: 0 0 4px;
+}
+
+.account-email { color: #888; margin: 0; font-size: 0.9rem; }
+
+/* TABS */
+.account-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.acc-tab {
+  padding: 10px 24px;
+  border: 2px solid #28a745;
+  background: transparent;
+  color: #28a745;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.acc-tab.active, .acc-tab:hover {
+  background: #28a745;
+  color: #fff;
+}
+
+/* CARD */
+.account-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+}
+.account-page.dark .account-card { background: #1e1e1e; }
+
+.section-block {
+  margin-bottom: 28px;
+}
+.section-block h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #28a745;
+}
+
+/* AVATAR GRID */
+.avatar-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.avatar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+.avatar-option img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.avatar-option span { font-size: 0.78rem; }
+.avatar-option:hover { border-color: #28a74555; }
+.avatar-option.selected {
+  border-color: #28a745;
+  background: #f0fff4;
+}
+.account-page.dark .avatar-option.selected { background: #1a3a25; }
+
+/* INPUT */
+.acc-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fafafa;
+  box-sizing: border-box;
+  outline: none;
+  transition: border 0.2s;
+}
+.acc-input:focus { border-color: #28a745; }
+.acc-input.dark { background: #2a2a2a; color: #f5f5f5; border-color: #444; }
+.acc-textarea { resize: vertical; }
+
+.acc-note {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 6px;
+}
+
+.acc-save-btn {
+  width: 100%;
+  padding: 13px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.acc-save-btn:hover { background: #218838; }
+
+/* REVIEWS */
+.no-reviews {
+  text-align: center;
+  padding: 40px;
+  color: #aaa;
+}
+.no-reviews span { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+
+.review-item {
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+}
+.account-page.dark .review-item { border-color: #333; }
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.review-item small { color: #aaa; font-size: 0.8rem; }

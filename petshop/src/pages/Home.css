@@ -1,0 +1,89 @@
+.animal-card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.animal-card:hover {
+  transform: translateY(-8px) scale(1.05);
+}
+
+.animal-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #28a745;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.animal-card:hover .animal-img {
+  border-color: #68d391;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.animal-card p {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.promo-card {
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-6px);
+}
+
+.promo-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-img {
+  height: 260px;
+  object-fit: contain;
+  width: 100%;
+  display: block;
+}
+
+.promo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.promo-card:hover .promo-overlay {
+  opacity: 1;
+}
+
+.promo-description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.old-price {
+  color: #dc3545;
+  text-decoration: line-through;
+  font-weight: 600;
+}
+
+.new-price {
+  color: #198754;
+  font-size: 1.2rem;
+}
+
+.app.dark-mode .promo-overlay {
+  background: rgba(0, 0, 0, 0.72);
+}
