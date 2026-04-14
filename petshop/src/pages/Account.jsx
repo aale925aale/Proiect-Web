@@ -31,6 +31,8 @@ function Account({ darkMode, language, user, setUser }) {
   const [saved, setSaved] = useState(false);
   const [tab, setTab] = useState("profile"); // "profile" | "reviews"
 
+  const orders = JSON.parse(localStorage.getItem("hp_orders") || "[]");
+
   const reviews = JSON.parse(localStorage.getItem("hp_reviews") || "[]")
     .filter(r => r.userEmail === user?.email);
 
@@ -73,6 +75,12 @@ function Account({ darkMode, language, user, setUser }) {
             onClick={() => setTab("reviews")}
           >
             {language === "ro" ? "Recenziile mele" : "My reviews"}
+          </button>
+          <button
+            className={`acc-tab${tab === "orders" ? " active" : ""}`}
+            onClick={() => setTab("orders")}
+          >
+            {language === "ro" ? "Comenzile mele" : "My orders"}
           </button>
         </div>
 
@@ -134,7 +142,7 @@ function Account({ darkMode, language, user, setUser }) {
           </div>
         )}
 
-        {/* TAB RECENZII */}
+{/* TAB RECENZII */}
         {tab === "reviews" && (
           <div className="account-card">
             {reviews.length === 0 ? (
@@ -159,6 +167,37 @@ function Account({ darkMode, language, user, setUser }) {
             )}
           </div>
         )}
+
+        {/* TAB COMENZI */}
+        {tab === "orders" && (
+          <div className="account-card">
+            {orders.length === 0 ? (
+              <div className="no-reviews">
+                <span>📦</span>
+                <p>{language === "ro" ? "Nu ai nicio comandă încă." : "No orders yet."}</p>
+              </div>
+            ) : (
+              orders.map(order => (
+                <div key={order.id} className="order-item">
+                  <div className="order-header">
+                    <span className="order-date">📅 {order.date}</span>
+                    <span className="order-total">💰 {order.total} RON</span>
+                  </div>
+                  <p className="order-address">📍 {order.address}</p>
+                  <div className="order-products">
+                    {order.items.map((item, i) => (
+                      <div key={i} className="order-product-row">
+                        <span>{language === "ro" ? item.nameRO : item.nameEN}</span>
+                        <span>x{item.qty} — {(item.price * item.qty).toFixed(2)} RON</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
       </div>
     </div>
   );

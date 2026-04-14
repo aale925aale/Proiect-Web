@@ -615,3 +615,149 @@
   color: #28a745;
   font-weight: 700;
 } 
+
+@media (max-width: 768px) {
+  .products-root {
+    padding: 0;
+  }
+
+  .products-layout {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .catalog-area {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pc-wrapper {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pc-front,
+  .pc-back {
+    padding: 8px;
+  }
+
+  .pc-img {
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .pc-name { font-size: 0.82rem; }
+  .pc-price { font-size: 0.85rem; }
+  .pc-old-price { font-size: 0.75rem; }
+
+  .pc-footer {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pc-btn {
+    width: 100%;
+    font-size: 0.75rem;
+    padding: 6px;
+  }
+
+  .pc-review-btn {
+    font-size: 0.75rem;
+    padding: 5px;
+  }
+
+  .pc-badge {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .products-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100% !important;
+  }
+
+  .sidebar.open {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .filter-group {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .catalog-area {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px;
+  }
+}@media (min-width: 769px) and (max-width: 1024px) {
+  .products-layout {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    position: relative !important;
+    z-index: 10;
+  }
+
+  .sidebar.open {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .filter-group {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .catalog-area {
+    width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+
+  .catalog-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px;
+  }
+
+  /* Ascunde butonul toggle pe tablet - sidebar e mereu vizibil */
+  .sidebar-toggle { display: none; }
+  .sidebar-title  { display: none; }
+  .sidebar-header { display: none; }
+}

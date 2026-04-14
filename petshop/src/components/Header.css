@@ -219,3 +219,46 @@
   align-items: center;
   justify-content: center;
 }
+
+@media (max-width: 600px) {
+  .header-container {
+    padding: 12px 16px;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+
+  .icon-label {
+    font-size: 0.6rem;
+    bottom: -14px;
+  }
+
+  .header-icons {
+    gap: 6px;
+  }
+
+  .user-btn-logged {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+ .user-name-text {
+    display: none;
+  }
+
+  .user-btn-logged {
+    padding: 6px 10px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

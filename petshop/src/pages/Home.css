@@ -87,3 +87,60 @@
 .app.dark-mode .promo-overlay {
   background: rgba(0, 0, 0, 0.72);
 }
+
+.promo-carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.promo-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 8px 4px;
+  flex: 1;
+}
+.promo-track::-webkit-scrollbar { display: none; }
+
+.promo-slide {
+  flex: 0 0 calc(33.333% - 16px);
+  scroll-snap-align: start;
+  min-width: 260px;
+}
+
+.promo-arrow {
+  background: #fff;
+  border: 2px solid #28a745;
+  color: #28a745;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.6rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  line-height: 1;
+}
+.promo-arrow:hover {
+  background: #28a745;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .promo-slide {
+    flex: 0 0 80%;
+  }
+  .promo-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+}

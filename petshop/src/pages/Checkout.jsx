@@ -37,10 +37,26 @@ function Checkout({ darkMode, language, user, cart, clearCart }) {
   const nextStep = () => {
     if (step === 1 && !validateAddress()) return;
     if (step === 2 && !validateCard())   return;
-    if (step === 2) { clearCart(); }
+    if (step === 2) {
+      // Salvează comanda în localStorage
+      const orders = JSON.parse(localStorage.getItem("hp_orders") || "[]");
+      const newOrder = {
+        id: Date.now(),
+        date: new Date().toLocaleDateString("ro-RO"),
+        address,
+        items: cart.map(i => ({
+          nameRO: i.nameRO,
+          nameEN: i.nameEN,
+          qty: i.qty,
+          price: i.price,
+        })),
+        total: cart.reduce((s, i) => s + i.price * i.qty, 0).toFixed(2),
+      };
+      localStorage.setItem("hp_orders", JSON.stringify([newOrder, ...orders]));
+      clearCart();
+    }
     setStep(s => s + 1);
   };
-
   const formatCardNumber = (val) => {
     const digits = val.replace(/\D/g,"").slice(0,16);
     return digits.replace(/(.{4})/g,"$1 ").trim();
@@ -109,7 +125,7 @@ function Checkout({ darkMode, language, user, cart, clearCart }) {
           </div>
         )}
 
-        {/* STEP 1 — ADRESĂ */}
+        {/* STEP 1 — ADRESA */}
         {step === 1 && (
           <div className="checkout-card">
             <h2>{language === "ro" ? "Adresă de livrare" : "Delivery address"}</h2>
@@ -133,7 +149,7 @@ function Checkout({ darkMode, language, user, cart, clearCart }) {
           </div>
         )}
 
-        {/* STEP 2 — PLATĂ */}
+        {/* STEP 2 — PLATA */}
         {step === 2 && (
           <div className="checkout-card">
             <h2>{language === "ro" ? "Date plată" : "Payment details"}</h2>
@@ -181,6 +197,7 @@ function Checkout({ darkMode, language, user, cart, clearCart }) {
               <button className="checkout-btn" onClick={nextStep}>💳 {language === "ro" ? "Plătește" : "Pay"}</button>
             </div>
           </div>
+
         )}
 
         {/* STEP 3 — CONFIRMARE */}
@@ -200,6 +217,7 @@ function Checkout({ darkMode, language, user, cart, clearCart }) {
         )}
       </div>
     </div>
+    
   );
 }
 

@@ -7,7 +7,9 @@ import "./Products.css";
 // Când ai backend, înlocuiești acest array cu:
 //   const [products, setProducts] = useState([]);
 //   useEffect(() => { fetch("/api/products").then(r=>r.json()).then(setProducts); }, []);
-import { MOCK_PRODUCTS, PROMOS } from "../data/products";
+import { MOCK_PRODUCTS as DEFAULT_PRODUCTS, PROMOS as DEFAULT_PROMOS } from "../data/products";
+const MOCK_PRODUCTS = JSON.parse(localStorage.getItem("hp_products")) || DEFAULT_PRODUCTS;
+const PROMOS = JSON.parse(localStorage.getItem("hp_promos")) || DEFAULT_PROMOS;
 
 const CATEGORIES = [
   { value: "all",     labelRO: "Toate",      labelEN: "All",      icon: "🐾" },
@@ -58,7 +60,7 @@ function ProductCard({ product, darkMode, language, user, addToCart }) {
               {avgRating && <p className="pc-rating">⭐ {avgRating} ({reviews.length})</p>}
               <div className="pc-footer">
               <div>
-                {promo && <p className="pc-old-price">{promo.oldPrice.toFixed(2)} RON</p>}
+                {promo && <p className="pc-old-price">{parseFloat(promo.oldPrice).toFixed(2)} RON</p>}
                 <p className="pc-price">{product.price.toFixed(2)} RON</p>
               </div>
               <button className="pc-btn" onClick={e => { e.stopPropagation(); addToCart(product); }}>
@@ -85,7 +87,7 @@ function ProductCard({ product, darkMode, language, user, addToCart }) {
                 ))}
               </div>
             )}
-            {promo && <p className="pc-old-price">{promo.oldPrice.toFixed(2)} RON</p>}
+            {promo && <p className="pc-old-price">{parseFloat(promo.oldPrice).toFixed(2)} RON</p>}
             <p className="pc-price">{product.price.toFixed(2)} RON</p>
             <button className="pc-btn" onClick={e => { e.stopPropagation(); addToCart(product); }}>
               {language === "ro" ? "Adaugă în coș" : "Add to cart"}

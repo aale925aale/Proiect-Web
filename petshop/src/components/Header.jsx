@@ -29,12 +29,12 @@ function Header({ darkMode, toggleDarkMode, language, toggleLanguage, user, onLo
 
             {user ? (
               <div className="user-dropdown-wrap">
-                <button
-                  className="user-btn-logged"
-                  onClick={() => setDropdownOpen(o => !o)}
-                >
-                  👤 {user.name.split(" ")[0]}
-                </button>
+               <button
+                className="user-btn-logged"
+                onClick={() => setDropdownOpen(o => !o)}
+              >
+                👤 <span className="user-name-text">{user.name.split(" ")[0]}</span>
+              </button>
                 {dropdownOpen && (
                   <div className="user-dropdown">
                     <p className="dropdown-email">{user.email}</p>
