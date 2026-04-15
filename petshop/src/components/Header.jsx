@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaUser, FaShoppingCart, FaBookOpen, FaMoon, FaSun, FaGlobe } from "react-icons/fa";
+import { FaUser, FaShoppingCart, FaBookOpen, FaPhone } from "react-icons/fa";
 import "./Header.css";
 
 function Header({ darkMode, toggleDarkMode, language, toggleLanguage, user, onLogout, cartCount, onCartClick }) {
@@ -18,51 +18,77 @@ function Header({ darkMode, toggleDarkMode, language, toggleLanguage, user, onLo
               <FaBookOpen />
             </Link>
 
-            <button className="icon-btn" onClick={toggleLanguage} title="Schimba limba">
-              <FaGlobe />
-              <span className="icon-label">{language.toUpperCase()}</span>
-            </button>
+            <Link to="/contact" className="icon-btn" title="Contact">
+              <FaPhone />
+            </Link>
 
-            <button className="icon-btn" onClick={toggleDarkMode} title="Dark mode">
-              {darkMode ? <FaSun /> : <FaMoon />}
-            </button>
-
+            {/* USER / DROPDOWN */}
             {user ? (
               <div className="user-dropdown-wrap">
-               <button
-                className="user-btn-logged"
-                onClick={() => setDropdownOpen(o => !o)}
-              >
-                👤 <span className="user-name-text">{user.name.split(" ")[0]}</span>
-              </button>
+                <button className="user-btn-logged" onClick={() => setDropdownOpen(o => !o)}>
+                  👤 <span className="user-name-text">{user.name.split(" ")[0]}</span>
+                </button>
                 {dropdownOpen && (
                   <div className="user-dropdown">
                     <p className="dropdown-email">{user.email}</p>
                     <Link to="/account" onClick={() => setDropdownOpen(false)}>
                       {language === "ro" ? "Profilul meu" : "My profile"}
                     </Link>
-                    <button onClick={() => { setShowLogoutConfirm(true); setDropdownOpen(false); }}>
+                    {/* DARK MODE */}
+                    <button onClick={toggleDarkMode}>
+                      {darkMode
+                        ? (language === "ro" ? "☀️ Mod luminos" : "☀️ Light mode")
+                        : (language === "ro" ? "🌙 Mod întunecat" : "🌙 Dark mode")}
+                    </button>
+                    {/* LIMBĂ */}
+                    <button onClick={toggleLanguage}>
+                      🌐 {language === "ro" ? "Switch to English" : "Schimbă în Română"}
+                    </button>
+                    {/* LOGOUT */}
+                    <button
+                      className="dropdown-logout"
+                      onClick={() => { setShowLogoutConfirm(true); setDropdownOpen(false); }}
+                    >
                       {language === "ro" ? "Deconectare" : "Sign out"}
                     </button>
                   </div>
                 )}
               </div>
             ) : (
-              <Link to="/login" className="icon-btn" title="Cont">
-                <FaUser />
-              </Link>
+              <div className="user-dropdown-wrap">
+                <button className="icon-btn" onClick={() => setDropdownOpen(o => !o)} title="Cont">
+                  <FaUser />
+                </button>
+                {dropdownOpen && (
+                  <div className="user-dropdown">
+                    <Link to="/login" onClick={() => setDropdownOpen(false)}>
+                      {language === "ro" ? "Conectează-te" : "Sign in"}
+                    </Link>
+                    {/* DARK MODE */}
+                    <button onClick={toggleDarkMode}>
+                      {darkMode
+                        ? (language === "ro" ? "☀️ Mod luminos" : "☀️ Light mode")
+                        : (language === "ro" ? "🌙 Mod întunecat" : "🌙 Dark mode")}
+                    </button>
+                    {/* LIMBĂ */}
+                    <button onClick={toggleLanguage}>
+                      🌐 {language === "ro" ? "Switch to English" : "Schimbă în Română"}
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
 
-             <button className="icon-btn cart-btn" onClick={onCartClick} title="Coș">
+            {/* COȘ */}
+            <button className="icon-btn cart-btn" onClick={onCartClick} title="Coș">
               <FaShoppingCart />
-              {cartCount > 0 && (
-                <span className="cart-badge">{cartCount}</span>
-              )}
+              {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
             </button>
           </div>
         </div>
       </header>
 
+      {/* MODAL LOGOUT */}
       {showLogoutConfirm && (
         <div className="logout-overlay" onClick={() => setShowLogoutConfirm(false)}>
           <div className="logout-modal" onClick={e => e.stopPropagation()}>

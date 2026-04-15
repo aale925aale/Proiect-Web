@@ -5,12 +5,14 @@ import AdminUsers    from "./admin/AdminUsers";
 import AdminReviews  from "./admin/AdminReviews";
 import AdminStats    from "./admin/AdminStats";
 import "./Admin.css";
+import AdminMessages from "./admin/AdminMessages";
 
 const MENU = [
   { key: "stats",    icon: "📊", label: "Dashboard"  },
   { key: "products", icon: "📦", label: "Produse"     },
   { key: "users",    icon: "👥", label: "Utilizatori" },
   { key: "reviews",  icon: "⭐", label: "Recenzii"    },
+  { key: "messages", icon: "✉️", label: "Mesaje"      },
 ];
 
 function Admin({ onAdminLogout }) {
@@ -72,6 +74,7 @@ function Admin({ onAdminLogout }) {
           {section === "products" && <AdminProducts />}
           {section === "users"    && <AdminUsers />}
           {section === "reviews"  && <AdminReviews />}
+          {section === "messages" && <AdminMessages />}
         </div>
       </main>
     </div>

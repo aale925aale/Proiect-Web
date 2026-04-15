@@ -19,6 +19,7 @@ function Footer({ darkMode, language }) {
           <Link to="/">{language === "ro" ? "Acasă" : "Home"}</Link>
           <Link to="/products">{language === "ro" ? "Catalog" : "Catalogue"}</Link>
           <Link to="/login">{language === "ro" ? "Cont" : "Account"}</Link>
+          <Link to="/contact">{language === "ro" ? "Contact" : "Contact"}</Link>
         </div>
 
         <div className="footer-contact">
@@ -32,6 +33,8 @@ function Footer({ darkMode, language }) {
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} HappyPaws. {language === "ro" ? "Toate drepturile rezervate." : "All rights reserved."}</p>
       </div>
+
+      <Link to="/contact">{language === "ro" ? "Contact" : "Contact"}</Link>  
     </footer>
   );
 }

@@ -133,7 +133,16 @@
   background: #28a745;
   color: #fff;
 }
+.about-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
 
+.about-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 @media (max-width: 768px) {
   .promo-slide {
     flex: 0 0 80%;

@@ -11,6 +11,8 @@ import Checkout from "./pages/Checkout";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import Footer from "./components/Footer";
+import Contact from "./pages/Contact";
+import SocialButtons from "./components/SocialButtons";
 
 function AppContent({ darkMode, toggleDarkMode, language, toggleLanguage, user, setUser,
   handleLogin, handleLogout, cart, setCart, cartOpen, setCartOpen,
@@ -48,29 +50,20 @@ function AppContent({ darkMode, toggleDarkMode, language, toggleLanguage, user, 
       <main style={{ paddingTop: isAdminPage ? "0" : "90px" }}>
         <Routes>
           <Route path="/" element={<Home darkMode={darkMode} language={language} />} />
-          <Route path="/account" element={
-            <Account darkMode={darkMode} language={language} user={user} setUser={setUser} />
-          } />
-          <Route path="/products" element={
-            <Products darkMode={darkMode} language={language} user={user} addToCart={addToCart} />
-          } />
-          <Route path="/products/:category" element={
-            <Products darkMode={darkMode} language={language} user={user} addToCart={addToCart} />
-          } />
+          <Route path="/account" element={<Account darkMode={darkMode} language={language} user={user} setUser={setUser} />} />
+          <Route path="/products" element={<Products darkMode={darkMode} language={language} user={user} addToCart={addToCart} />} />
+          <Route path="/products/:category" element={<Products darkMode={darkMode} language={language} user={user} addToCart={addToCart} />} />
           <Route path="/login" element={<Login darkMode={darkMode} language={language} onLogin={handleLogin} />} />
           <Route path="/register" element={<Register darkMode={darkMode} language={language} onLogin={handleLogin} />} />
           <Route path="/checkout" element={<Checkout darkMode={darkMode} language={language} user={user} cart={cart} clearCart={clearCart} />} />
           <Route path="/cart" element={<h1 className="text-center mt-5">Cos</h1>} />
           <Route path="/admin-login" element={<AdminLogin onAdminLogin={handleAdminLogin} />} />
-          <Route path="/admin" element={
-            isAdmin ? <Admin onAdminLogout={handleAdminLogout} /> : <AdminLogin onAdminLogin={handleAdminLogin} />
-          } />
+          <Route path="/admin" element={isAdmin ? <Admin onAdminLogout={handleAdminLogout} /> : <AdminLogin onAdminLogin={handleAdminLogin} />} />
+          <Route path="/contact" element={<Contact darkMode={darkMode} language={language} />} />
         </Routes>
       </main>
-          
-        {!isAdminPage && (
-          <Footer darkMode={darkMode} language={language} />
-        )}
+      {!isAdminPage && <SocialButtons />}
+      {!isAdminPage && <Footer darkMode={darkMode} language={language} />}
     </div>
   );
 }

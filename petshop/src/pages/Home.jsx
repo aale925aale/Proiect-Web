@@ -3,6 +3,7 @@ import { MOCK_PRODUCTS as DEFAULT_PRODUCTS, PROMOS as DEFAULT_PROMOS } from "../
 import { useRef, useState, useEffect } from "react";
 import "./Home.css";
 
+
 function Home({ darkMode, language }) {
 
   const MOCK_PRODUCTS = JSON.parse(localStorage.getItem("hp_products")) || DEFAULT_PRODUCTS;
@@ -64,6 +65,18 @@ function Home({ darkMode, language }) {
     el.scrollTo({ left: next * slideWidth, behavior: "smooth" });
     setTimeout(checkScroll, 400);
   };
+
+  const aboutRef = useRef(null);
+  const [aboutVisible, setAboutVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setAboutVisible(true); },
+      { threshold: 0.2 }
+    );
+    if (aboutRef.current) observer.observe(aboutRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div>
@@ -185,23 +198,25 @@ function Home({ darkMode, language }) {
           </div>
         </div>
       </section>
-
-      {/* DESPRE NOI */}
-      <section className="py-5" style={lightSectionStyle}>
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <img src="/images/aboutus.jpg" alt="Despre noi" className="img-fluid rounded shadow" style={{ height: "350px", width: "100%", objectFit: "cover" }} />
-            </div>
-            <div className="col-md-6 mt-4 mt-md-0">
-              <h2 style={{ color: "#28a745" }}>{language === "ro" ? "Despre noi" : "About us"}</h2>
-              <p>{language === "ro" ? "La HappyPaws, iubim animalele si ne dorim sa oferim produse de calitate pentru caini, pisici, pasari si alte animale de companie." : "At HappyPaws, we love animals and want to offer quality products for dogs, cats, birds and other pets."}</p>
-              <p>{language === "ro" ? "Selectam cu atentie hrana, jucariile si accesoriile, astfel incat fiecare client sa gaseasca exact ce are nevoie pentru prietenul sau blanos." : "We carefully select food, toys and accessories so every customer can find exactly what their furry friend needs."}</p>
-              <p>{language === "ro" ? "Misiunea noastra este sa aducem bucurie atat animalelor, cat si stapanilor lor, prin produse utile, sigure si accesibile." : "Our mission is to bring joy to both pets and their owners through useful, safe and affordable products."}</p>
-            </div>
+    {/* DESPRE NOI */}
+    <section className="py-5" style={lightSectionStyle}>
+      <div
+        ref={aboutRef}
+        className={`container about-animate${aboutVisible ? " visible" : ""}`}
+      >
+        <div className="row align-items-center">
+          <div className="col-md-6">
+            <img src="/images/aboutus.jpg" alt="Despre noi" className="img-fluid rounded shadow" style={{ height: "350px", width: "100%", objectFit: "cover" }} />
+          </div>
+          <div className="col-md-6 mt-4 mt-md-0">
+            <h2 style={{ color: "#28a745" }}>{language === "ro" ? "Despre noi" : "About us"}</h2>
+            <p>{language === "ro" ? "La HappyPaws, iubim animalele si ne dorim sa oferim produse de calitate pentru caini, pisici, pasari si alte animale de companie." : "At HappyPaws, we love animals and want to offer quality products for dogs, cats, birds and other pets."}</p>
+            <p>{language === "ro" ? "Selectam cu atentie hrana, jucariile si accesoriile, astfel incat fiecare client sa gaseasca exact ce are nevoie pentru prietenul sau blanos." : "We carefully select food, toys and accessories so every customer can find exactly what their furry friend needs."}</p>
+            <p>{language === "ro" ? "Misiunea noastra este sa aducem bucurie atat animalelor, cat si stapanilor lor, prin produse utile, sigure si accesibile." : "Our mission is to bring joy to both pets and their owners through useful, safe and affordable products."}</p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* CONTACT */}
       <section className="py-5" style={sectionStyle}>
